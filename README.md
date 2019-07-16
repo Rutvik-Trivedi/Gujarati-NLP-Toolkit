@@ -75,7 +75,7 @@ print(tokens)  # ['તારુ નામ શુ છે', 'તુ શુ કર�
 ```
 
 ### 3) Translator: 
-This feature is helpful for people not acquainted with Gujarati. This function takes input of a Gujarati Word or Letter and gives out the Pronounciation of the respective input in English separated by '-'.
+This feature is helpful for people not acquainted with Gujarati. This function takes input of a Gujarati Word or Letter and gives out the Pronounciation of the respective input in English.
 
 #### a) Letter Translation:
 ```python
@@ -85,16 +85,17 @@ translation = translator.letter_translate('ત')  # Letter 'ta'
 print(translation)   # ta
 ```
 
-#### b) Word Translation:
+#### b) Word/Sentence Translation:
 ```python
 import translator
 translator = translator()
-translation = translator.word_translate('તારુ')  # Meaning 'your' or 'yours'
-print(translation)   # taa-ra-u
+translation = translator.translate('તારુ')  # Meaning 'your' or 'yours'
+print(translation)   # taaru
+translation = translator.translate('મારુ નામ રુત્વિક છે')	# meaning 'My name is Rutvik'
+print(translation)   # maaru naam rutvik chhe
 ```
 
 # TODO:
 - Improving the POS Tagger which currently overfits due to fewer data. Improve implementation.
 - Fix Bugs in the evaluation of POS Tagger.
-- Improving ```letter_translate()``` for better results.
 

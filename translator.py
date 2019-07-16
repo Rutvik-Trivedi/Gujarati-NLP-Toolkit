@@ -1,21 +1,17 @@
-from utils.alphabet import alphabet
+from utils.alphabet import alphabet, letters
+import re
 
 
 class translator():
 
-    def __init__(self,letter=None,word=None):
-        self.letter = letter
-        self.word = word
-
     def letter_translate(self, letter):
         """Translates the letter given in Gujarati and prints out the english pronounciation"""
-        self.letter = letter
-        return list(alphabet.keys())[list(alphabet.values()).index(letter)]
+        return list(letters.keys())[list(letters.values()).index(letter)]
 
-    def word_translate(self, word):
+    def translate(self, word):
         """Translates the word given in Gujarati and prints out the pronounciation in English"""
-        self.word = word
+        word = re.sub(r'્', r'', word)
         word = [letter for letter in word]
         a = [list(alphabet.keys())[list(alphabet.values()).index(letter)] for letter in word]
-        translation = '-'.join(letter for letter in a)
+        translation = ''.join(letter for letter in a)
         return translation
