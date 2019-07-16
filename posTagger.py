@@ -281,20 +281,3 @@ class posTagger():
 		for word, tag in zip(sentence.split(), y[0]):
 			return_list.append((word, tag))
 		return return_list
-
-
-
-if __name__ == '__main__':
-	tagger = posTagger()
-	#X,y = tagger.data_from_corpus('guj_pos_tag.txt')
-	# train_X = X[:int(0.8*len(X))]
-	# train_y = y[:int(0.8*len(y))]
-	# test_X = X[int(0.8*len(X)):]
-	# test_y = y[int(0.8*len(y)):]
-	# tagger.train(train_X, train_y, save=False)
-	#rs = tagger.optimize_hyperparameters(train_X, train_y)
-	#print(rs)
-	#tagger.evaluate(test_X, test_y)
-
-	sentence = 'તારુ નામ શુ છે?'
-	print(tagger.pos_tag(sentence))
