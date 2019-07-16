@@ -1,15 +1,20 @@
-from utils import alphabet
-from utils import advanced_tokenize_utils
-
+from utils.stopwords import stopwords
 import re
 
-def WordTokenizer(data, keep_punctuations=False, keep_stopwords = True):
+def WordTokenizer(data, keep_punctuations=True, keep_stopwords = True):
     if not keep_punctuations:
         data = re.sub(r'[.?/,:;*\"!$#@%^&~\(\)]','',data)
+
+    data = re.sub(r'([.,\'\\"!?%#@*<>\+\-\(\)])', r' \1', data)
     data = re.split(r'[ -]',data)
     if not keep_stopwords:
-        from utils import stopwords
-        data = [words for words in data and words not in stopwords]
+        a = []
+        for word in data:
+        	print(word)
+        	if word not in stopwords:
+        		a.append(word)
+        return a
+    
     return data
 
 
@@ -19,13 +24,6 @@ def SentenceTokenizer(data, tokenize_by_comma = False):
         data = re.split(r'[,.?!]',data)
     else:
         data = re.split(r'[.?!]',data)
-    return data
-
-def advanced_word_tokenize(data, keep_punctuations=False, keep_stopwords=True):
-    if not keep_punctuations:
-        data = re.sub(r'[.?/,:;*\"!$#@%^&~\(\)]','',data)
-    data = re.split(r'[ -]',data)
-    if not keep_stopwords:
-        from utils import stopwords
-        data = [words for words in data and words not in stopwords]
+    if not data[-1]:
+    	del(data[-1])
     return data

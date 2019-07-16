@@ -48,7 +48,47 @@ A Python NLP Toolkit for Gujarati(Under Progress) created on top of Scikit-Learn
 	d) Evaluation Processes:
 	This feature is under development. Please check again later.
 
+
+2) Tokenizers:
+
+	a)  Word Tokenizer:
+	```python
+	from tokenizer import WordTokenizer
+	sentence = 'તારુ નામ શુ છે?'  # What is your name?
+	tokens = WordTokenizer(sentence, keep_punctuations=True, keep_stopwords=True)   # Set False to remove Punctuations and Stopwords respectively
+	print(tokens)  # ['તારુ', 'નામ', 'શુ', 'છે', '?']
+	```
+
+	b)  Sentence Tokenizer:
+	```python
+	from tokenizer import SentenceTokenizer
+	sentence = 'તારુ નામ શુ છે? તુ શુ કરે છો?'  # What is your name? What are you doing?
+	tokens = SentenceTokenizer(sentence)
+	print(tokens)  # ['તારુ નામ શુ છે', 'તુ શુ કરે છો']
+	```
+
+3) Translator:
+
+	This feature is helpful for people not acquainted with Gujarati. This function takes input of a Gujarati Word or Letter and gives out the Pronounciation of the respective input in English separated by '-'.
+
+	a) Letter Translation:
+	```python
+	import translator
+	translator = translator()
+	translation = translator.letter_translate('ત')  # Letter 'ta'
+	print(translation)   # ta
+	```
+
+	b) Word Translation:
+	```python
+	import translator
+	translator = translator()
+	translation = translator.word_translate('તારુ')  # Meaning 'your' or 'yours'
+	print(translation)   # taa-ra-u
+	```
+
 # TODO:
 - Improving the POS Tagger which currently overfits due to fewer data. Improve implementation.
 - Fix Bugs in the evaluation of POS Tagger.
+- Improving ```letter_translate()``` for better results.
 
