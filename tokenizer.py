@@ -25,7 +25,3 @@ def SentenceTokenizer(data):
     if not data[-1]:
     	del(data[-1])
     return data
-
-if __name__=='__main__':
-	sentence = 'તારુ નામ શુ છે? તુ કોણ છે! હુ છુ.'
-	print(SentenceTokenizer(sentence))
