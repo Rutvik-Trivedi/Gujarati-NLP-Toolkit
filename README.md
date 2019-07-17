@@ -95,6 +95,34 @@ translation = translator.translate('મારુ નામ રુત્વિક
 print(translation)   # maaru naam rutvik chhe
 ```
 
+### 4) Stemmer:
+The implementation of the Stemmer is completely rule based. So, it will not be able to give accurate stems and meaningful words. The stemmer is able to give stemmed words by stripping both prefixes and suffixes. An example covering both the strips is given below. The implementation of the stemmer can be done as follows:
+
+#### a) Stem a text:
+```python
+from stemmer import Stemmer
+stemmer = Stemmer()
+example_text = 'હું દોડ​વા જઉં છું. દોડ​વા માટે તમારે સાથે આવ​વું પ‌ડશે. ચાલશે ને? અન્યાય ના કરતા.'
+# Meaning: 'I am going for a run. You will have to come with me. Is it ok? Don't be unfair.'
+# This will exhibit both prefix (in 'અન્યાય') and suffix (in 'દોડ​વા' and other words) stripping.
+stemmed_text = stemmer.stem(example_text)
+print(stemmed_text)
+# Output is a list of stemmed sentences: ['હુ દોડ જઉં છું.', 'દોડ માટે તમાર સાથ ચાલ પડશ.', 'ચાલશ ને', 'ન્યાય ના કર.']
+```
+
+#### b) Add and Remove Suffixes:
+```python
+from stemmer import Stemmer
+stemmer = Stemmer()
+stemmer.add_suffix('suffix_in_gujarati') # Will add the entered suffix to the stripping list. Will strip the suffix after this
+stemmer.stem('your_sentence') # This sentence will be stripped of your added suffix also.
+stemmer.add_prefix('prefix_in_gujarati') # Similar to add_suffix(). But it will work for prefix.
+stemmer.delete_suffix('suffix_to_delete') # Stemmer won't consider stripping the suffix anymore for the session.
+stemmer.delete_prefix('prefix_to_delete') # Similar to delete_suffix() but for prefix.
+```
+
+
+
 # TODO:
 - Improving the POS Tagger which currently overfits due to fewer data. Improve implementation.
 - Fix Bugs in the evaluation of POS Tagger.
