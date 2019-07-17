@@ -71,7 +71,7 @@ print(tokens)  # ['તારુ', 'નામ', 'શુ', 'છે', '?']
 from tokenizer import SentenceTokenizer
 sentence = 'તારુ નામ શુ છે? તુ શુ કરે છો?'  # What is your name? What are you doing?
 tokens = SentenceTokenizer(sentence)
-print(tokens)  # ['તારુ નામ શુ છે', 'તુ શુ કરે છો']
+print(tokens)  # ['તારુ નામ શુ છે?', 'તુ શુ કરે છો?']
 ```
 
 ### 3) Translator: 
