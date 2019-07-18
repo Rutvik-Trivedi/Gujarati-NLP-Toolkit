@@ -124,6 +124,5 @@ stemmer.delete_prefix('prefix_to_delete') # Similar to delete_suffix() but for p
 
 
 # TODO:
-- Improving the POS Tagger which currently overfits due to fewer data. Improve implementation.
 - Fix Bugs in the evaluation of POS Tagger.
 

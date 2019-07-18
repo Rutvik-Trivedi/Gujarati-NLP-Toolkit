@@ -1,4 +1,3 @@
-from collections import defaultdict
 import numpy as np
 import pandas as pd
 import pickle
@@ -14,7 +13,7 @@ import scipy.stats
 
 
 
-#TODO: Fix the Evaluation functions and improve the POS Tagger further.
+#TODO: Fix the Evaluation functions.
 
 
 
