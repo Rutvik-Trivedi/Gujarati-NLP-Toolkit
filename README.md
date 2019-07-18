@@ -1,5 +1,11 @@
 # Gujarati-NLP-Toolkit
-A Python NLP Toolkit for Gujarati(Under Progress) created on top of Scikit-Learn for NLP of Gujarati Language.
+#### A Python NLP Toolkit for Gujarati(Under Progress) created on top of Scikit-Learn for NLP of Gujarati Language.
+
+&nbsp;
+
+> Dependencies: scikit-learn
+
+&nbsp;
 
 
 ## Added Features:
@@ -33,9 +39,11 @@ train_X:  [[feature_dict of word1, feature_dict of word2, ........ , feature_dic
 	      [feature_dict of word1, feature_dict of word2, ........ , feature_dict of wordn]]	   // Sentence n
 train_y:  [[tags of sentence 1], [tags of sentence 2], ........, [tags of sentence n]]
 ```
+&nbsp;
 
 >Moreover, you may also train data in languages other than Gujarati for creating posTagger in your own language. Try experimenting with the hyper-parameters to create the best suitable model for your language.
 
+&nbsp;
 Enter the Following block of code after this:
 
 ```python
@@ -53,7 +61,8 @@ model = tagger.load()
 #### d) Evaluation Processes:
 This feature is under development. Please check again later.
 
-
+&nbsp;
+&nbsp;
 ### 2) Tokenizers:
 
 #### a)  Word Tokenizer:
@@ -73,7 +82,8 @@ sentence = 'તારુ નામ શુ છે? તુ શુ કરે છો
 tokens = SentenceTokenizer(sentence)
 print(tokens)  # ['તારુ નામ શુ છે?', 'તુ શુ કરે છો?']
 ```
-
+&nbsp;
+&nbsp;
 ### 3) Translator: 
 This feature is helpful for people not acquainted with Gujarati. This function takes input of a Gujarati Word or Letter and gives out the Pronounciation of the respective input in English.
 
@@ -94,7 +104,8 @@ print(translation)   # taaru
 translation = translator.translate('મારુ નામ રુત્વિક છે')	# meaning 'My name is Rutvik'
 print(translation)   # maaru naam rutvik chhe
 ```
-
+&nbsp;
+&nbsp;
 ### 4) Stemmer:
 The implementation of the Stemmer is completely rule based. So, it will not be able to give accurate stems and meaningful words. The stemmer is able to give stemmed words by stripping both prefixes and suffixes. An example covering both the strips is given below. The implementation of the stemmer can be done as follows:
 
@@ -121,8 +132,8 @@ stemmer.delete_suffix('suffix_to_delete') # Stemmer won't consider stripping the
 stemmer.delete_prefix('prefix_to_delete') # Similar to delete_suffix() but for prefix.
 ```
 
-
-
+&nbsp;
+&nbsp;
 # TODO:
 - Fix Bugs in the evaluation of POS Tagger.
 
