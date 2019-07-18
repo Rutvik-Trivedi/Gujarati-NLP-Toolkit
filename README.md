@@ -2,11 +2,11 @@
 #### A Python NLP Toolkit for Gujarati(Under Progress) created on top of Scikit-Learn for NLP of Gujarati Language.
 
 &nbsp;
-
-> Dependencies: scikit-learn
-
+```
+Dependencies: scikit-learn
+```
 &nbsp;
-
+&nbsp;
 
 ## Added Features:
 
@@ -42,8 +42,8 @@ train_y:  [[tags of sentence 1], [tags of sentence 2], ........, [tags of senten
 &nbsp;
 
 >Moreover, you may also train data in languages other than Gujarati for creating posTagger in your own language. Try experimenting with the hyper-parameters to create the best suitable model for your language.
-
 &nbsp;
+
 Enter the Following block of code after this:
 
 ```python
