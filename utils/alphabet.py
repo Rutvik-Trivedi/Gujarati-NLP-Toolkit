@@ -14,19 +14,19 @@ from itertools import chain
 
 vowels = {'a':'અ',
           'aa':'આ',
-          'y':'ઇ',   # Sometimes is also pronounced as 'i'
-          'i':'ઇ',   # Sometimes is also pronounced as 'y' (as the 'y' in 'literally')
+          'y':'ઇ',
+          'i':'ઇ',
           'ee':'ઈ',
           'u':'ઉ',
           'oo':'ઊ',
-          'ru':'ઋ',   # Sometimes is also pronounced as 'ri'
+          'ru':'ઋ',
           'e':'એ',
           'ai':'ઐ',
           'o':'ઓ',
           'au':'ઔ',
-          'am':'અં',  # Sometimes is also pronounced as 'an'
+          'am':'અં',
           'ah':'અઃ',
-          'an':'અં'}  # Sometimes is also pronounced as 'am'
+          'an':'અં'}
 
 signs = {'aa':'ા',
          'i':'િ',
@@ -40,7 +40,7 @@ signs = {'aa':'ા',
          'o':'ો',
          'au':'ૌ',
          'an':'ં',
-         'ah':'ઃ '}
+         '':'ઃ'}
 
 velar_consonants = {'k':'ક્',   # Sometimes is also pronounced as 'c'
                     'c':'ક્',   # Sometimes is also pronounced as 'k'
@@ -129,14 +129,31 @@ consonants = {'k':'ક',
          'L':'ળ',
          'ksh':'ક્શ',
          'gn':'ગ્ન',
-         'ksh':'ક્ષ​',
-         ' ':' '}
+         'ksh':'ક્ષ​'}
 
-#consonants = dict(chain.from_iterable(d.items() for d in (velar_consonants,palatal_consonants,retroflex_consonants,
-#                                                          dental_consonants,labial_consonants,sonorant_consonants,
-#                                                          sibilant_consonants,guttural_consonants,additional_consonants,full)))
+punctuations = {
+    '?':'?',
+    '.':'.',
+    '!':'!',
+    ',':',',
+    ':':':',
+    ';':';',
+    '@':'@',
+    "'":"'",
+    '"':'"',
+    '#':'#',
+    '$':'$',
+    '%':'%',
+    '*':'*',
+    '&':'&',
+    '+':'+',
+    '-':'-',
+    '=':'=',
+    '/':'/',
+    '\\':'\\',
+    ' ':' '}
 
-alphabet = dict(chain.from_iterable(d.items() for d in (vowels,consonants,signs)))
+alphabet = dict(chain.from_iterable(d.items() for d in (vowels,consonants,signs,punctuations)))
 
 letters={'ka':'ક',
          'ca':'ક',
@@ -189,5 +206,21 @@ letters={'ka':'ક',
          'o':'ઓ',
          'au':'ઔ',
          'am':'અં',  
-         'ah':'અઃ',
+         'aha':'અઃ',
          'an':'અં'}
+
+utfalpha = {
+    'aa':b'\xe0\xaa\x86',
+    'i':b'\xe0\xaa\x87',
+    'ee':b'\xe0\xaa\x88',
+    'u':b'\xe0\xaa\x89',
+    'oo':b'\xe0\xaa\x8a',
+    'ru':b' \xe0\xaa\x8b',
+    'e':b'\xe0\xaa\x8d',
+    'e':b'\xe0\xaa\x8f',
+    'ai':b'\xe0\xaa\x90',
+    'o':b'\xe0\xaa\x90',
+    'o':b'\xe0\xaa\x93',
+    'au':b'\xe0\xaa\x94',
+    '':b'\xe2\x80\x8c'
+}
