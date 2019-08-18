@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import pickle
 import re
+import warnings
+warnings.filterwarnings('ignore')
 
 import sklearn_crfsuite
 import sklearn
@@ -11,9 +13,6 @@ from sklearn.metrics import make_scorer
 from sklearn.model_selection import RandomizedSearchCV
 import scipy.stats
 
-
-
-#TODO: Fix the Evaluation functions.
 
 
 
@@ -150,17 +149,24 @@ class posTagger():
 		train_y = [self.sent2tags(sentence) for sentence in list_sents]
 		return (train_X, train_y)
 
-	def train(self, train_X, train_y, algorithm='lbfgs', c1=0.1, c2=0.1, max_iterations=100, all_possible_transitions=True, save=False):
+	def train(self, train_X, train_y, algorithm='lbfgs', c1=0.6, c2=0.01, max_iterations=100, optimize_hyperparameters=False, all_possible_transitions=True, save=False):
 		if save==True and self.model_=='guj.rtm':
 			raise ValueError("Model name must be given as an argument to the posTagger() constructor.")
-		crf = sklearn_crfsuite.CRF(
-			algorithm=algorithm,
-			c1=c1,
-			c2=c2,
-			max_iterations=max_iterations,
-			all_possible_transitions=all_possible_transitions
-			)
+		if optimize_hyperparameters:
+			print("Optimizing hyperparameters........")
+			rs = self.optimize_hyperparameters(train_X, train_y)
+			crf = rs.best_estimator_
+		else:
+			crf = sklearn_crfsuite.CRF(
+				algorithm=algorithm,
+				c1=c1,
+				c2=c2,
+				max_iterations=max_iterations,
+				all_possible_transitions=all_possible_transitions
+				)
+		print("Training the model............")
 		crf.fit(train_X, train_y)
+		print("Done")
 
 		if save:
 			with open(self.model_, "wb") as f:
@@ -200,7 +206,7 @@ class posTagger():
 		pred_y = crf.predict(test_X)
 		return pred_y
 
-	def optimize_hyperparameters(self, train_X, train_y, metric='flat_f1_score', average='weighted', cv=3, verbose=1, n_jobs=-1, n_iter=50):
+	def optimize_hyperparameters(self, train_X, train_y, metric='flat_f1_score', average='weighted', cv=5, verbose=2, n_jobs=-1, n_iter=10):
 		params_space = {
 		'c1': scipy.stats.expon(scale=0.5),
 		'c2': scipy.stats.expon(scale=0.05)

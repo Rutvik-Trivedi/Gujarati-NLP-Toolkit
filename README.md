@@ -1,3 +1,4 @@
+
 # Gujarati-NLP-Toolkit
 #### A Python NLP Toolkit for Gujarati(Under Progress) created on top of Scikit-Learn for NLP of Gujarati Language.
 
@@ -5,8 +6,6 @@
 ```
 Dependencies: scikit-learn
 ```
-&nbsp;
-&nbsp;
 
 ## Added Features:
 
@@ -41,7 +40,8 @@ train_y:  [[tags of sentence 1], [tags of sentence 2], ........, [tags of senten
 ```
 &nbsp;
 
->Moreover, you may also train data in languages other than Gujarati for creating posTagger in your own language. Try experimenting with the hyper-parameters to create the best suitable model for your language.
+>Moreover, you may also train data in languages other than Gujarati for creating posTagger in your own language.
+
 &nbsp;
 
 Enter the Following block of code after this:
@@ -53,13 +53,33 @@ tagger.train(train_X, train_y, save=True)    # save = False if you don't want to
 #### c)  Loading your trained posTag Model:
 ```python
 import posTagger as pt
-tagger = posTagger('model_name')
+tagger = pt.posTagger('model_name')
 model = tagger.load()
 ## Carry out your processes
 ```
 
-#### d) Evaluation Processes:
-This feature is under development. Please check again later.
+#### d) Optimizing the Hyperparameters (Choosing the best model automatically):
+```python
+import posTagger as pt
+tagger = pt.posTagger()
+tagger.train(train_X, train_y, optimize_hyperparameters=True)
+#By default, the feature is set to false
+```
+
+
+#### e) Evaluation Processes:
+The metrics available for the evaluation are:
+* Flat F1 score
+* Flat classification report
+
+&nbsp;
+Evaluation process can be carried out as follows:
+```python
+import posTagger as pt
+tagger = pt.posTagger()
+tagger.evaluate(test_X, test_y, metric='flat_f1_score')
+# Or metric='flat_classification_report'
+```
 
 &nbsp;
 &nbsp;
@@ -134,6 +154,6 @@ stemmer.delete_prefix('prefix_to_delete') # Similar to delete_suffix() but for p
 
 &nbsp;
 &nbsp;
-# TODO:
-- Fix Bugs in the evaluation of POS Tagger.
 
+# TODO:
+-- Create a morphological tokenizer
