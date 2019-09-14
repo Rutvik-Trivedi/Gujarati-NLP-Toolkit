@@ -25,7 +25,7 @@ import posTagger as pt
 tagger = pt.posTagger('model_name')   # Give any name for your model
 train_X, train_y = tagger.data_from_corpus('path/to/corpus/')
 ```
-	
+
 Your corpus must be in txt(comma delimited) or csv format and must contain a column 'Value' having the data in the form:
 ```
 Row1:    'word1\tag1 word2\tag2 word3\tag3 ....... wordn\tagn'
@@ -47,9 +47,9 @@ train_y:  [[tags of sentence 1], [tags of sentence 2], ........, [tags of senten
 Enter the Following block of code after this:
 
 ```python
-tagger.train(train_X, train_y, save=True)    # save = False if you don't want to save the model	
+tagger.train(train_X, train_y, save=True)    # save = False if you don't want to save the model
 ```
-	
+
 #### c)  Loading your trained posTag Model:
 ```python
 import posTagger as pt
@@ -95,7 +95,7 @@ print(tokens)  # ['તારુ', 'નામ', 'શુ', 'છે', '?']
 ```
 
 #### b)  Sentence Tokenizer:
-	
+
 ```python
 from tokenizer import SentenceTokenizer
 sentence = 'તારુ નામ શુ છે? તુ શુ કરે છો?'  # What is your name? What are you doing?
@@ -104,7 +104,7 @@ print(tokens)  # ['તારુ નામ શુ છે?', 'તુ શુ કર
 ```
 &nbsp;
 &nbsp;
-### 3) Translator: 
+### 3) Translator:
 This feature is helpful for people not acquainted with Gujarati. This function takes input of a Gujarati Word or Letter and gives out the Pronounciation of the respective input in English.
 
 #### a) Letter Translation:
@@ -157,3 +157,4 @@ stemmer.delete_prefix('prefix_to_delete') # Similar to delete_suffix() but for p
 
 # TODO:
 -- Create a morphological tokenizer
+-- Create a Sentiment Analyser
