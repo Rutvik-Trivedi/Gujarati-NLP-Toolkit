@@ -279,6 +279,8 @@ class posTagger():
 	def pos_tag(self, sent):
 		sent = re.sub(r'([.,\'\\"!?%#@*<>\+\-\(\)])', r' \1', sent)
 		sent = re.sub(r'\u200b', r'', sent)
+		sent = re.sub(r'\ufeff', r'', sent)
+		sent = re.sub(r'\n', r' ', sent)
 		sentence = sent
 		sent = self.sentence_to_features(sent)
 		y = self.predict([sent])
