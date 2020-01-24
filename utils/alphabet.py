@@ -153,7 +153,21 @@ punctuations = {
     '\\':'\\',
     ' ':' '}
 
-alphabet = dict(chain.from_iterable(d.items() for d in (vowels,consonants,signs,punctuations)))
+
+numbers={
+'1':'૧',
+'2':'૨',
+'3':'૩',
+'4':'૪',
+'5':'૫',
+'6':'૬',
+'7':'૭',
+'8':'૮',
+'9':'૯',
+'0':'૦'
+}
+
+alphabet = dict(chain.from_iterable(d.items() for d in (vowels,consonants,signs,punctuations,numbers)))
 
 letters={'ka':'ક',
          'ca':'ક',
@@ -205,7 +219,7 @@ letters={'ka':'ક',
          'ai':'ઐ',
          'o':'ઓ',
          'au':'ઔ',
-         'am':'અં',  
+         'am':'અં',
          'aha':'અઃ',
          'an':'અં'}
 
