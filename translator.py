@@ -1,14 +1,18 @@
 from utils.alphabet import alphabet, letters, utfalpha, punctuations
+from utils.gujarati_hindi import gu_hi, hi_gu
 import re
 
 
-class translator():
+class Translator():
 
-    def letter_translate(self, letter):
+    def __init__(self, verbose=False):
+        self.verbose=verbose
+
+    def letter_translate_gujarati_to_english(self, letter):
         """Translates the letter given in Gujarati and prints out the english pronounciation"""
         return list(letters.keys())[list(letters.values()).index(letter)]
 
-    def translate(self, word):
+    def gujarati_to_english(self, word):
         """Translates the word given in Gujarati and prints out the pronounciation in English"""
         word = re.sub(r'્', r'', word)
         word = re.sub(r'\u200b',r'',word)
@@ -29,11 +33,29 @@ class translator():
         translation = ''.join(letter for letter in return_list)
         return translation
 
-if __name__=='__main__':
-    translator = translator()
-    # for a in alphabet:
-    #     print(a)
-    print(translator.translate("અરે યાર શુ કરે છેં"))
-    # print('આ'.encode('utf-8'))
-    # string = b'\xe0\xaa\x91'.decode('utf-8')
-    # print(string)
+    def hindi_to_gujarati(self, sentence):
+        """Translates the word given in Hindi and prints out the pronounciation in Gujarati"""
+        l = list(sentence)
+        for i in range(len(l)):
+            try:
+                l[i] = hi_gu[l[i]]
+            except KeyError:
+                if self.verbose:
+                    print("Warning: {} does not exist in the dictionary".format(l[i]))
+                pass
+        l = ''.join(l)
+        l = re.sub(r'\u200b', "", l)
+        l = re.sub(r'\u200d', "", l)
+        return l
+
+    def gujarati_to_hindi(self, sentence):
+        """Translates the word given in Gujarati and prints out the pronounciation in Hindi"""
+        l = list(sentence)
+        for i in range(len(l)):
+            try:
+                l[i] = gu_hi[l[i]]
+            except:
+                if self.verbose:
+                    print("Warning: {} does not exist in the dictionary".format(l[i]))
+                pass
+        return ''.join(l)

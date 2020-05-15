@@ -7,6 +7,9 @@
 Dependencies: scikit-learn
 ```
 
+# __Note:__
+__This module is being worked on a major update. The main model is transferred from Sklearn to NLTK CRF Tagger. The present documentation is outdated in this context. Please do not use this model based on the given documentation. The module is in a working state but the documentation is outdated. You may use the module without a documentation guideline, but if you require a documentation, please stay tuned__
+
 ## Added Features:
 
 ### 1) POS Tagger:

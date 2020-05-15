@@ -1,2 +1,6 @@
 __pycache__/
-test*.py
+test*.*
+gujarati_text_wikisource/
+parser.py
+*.csv
+*.txt
