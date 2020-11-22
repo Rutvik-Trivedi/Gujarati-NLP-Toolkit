@@ -12,9 +12,15 @@ class Preprocessor():
         text = re.sub(r'\ufeff', "", text)
         text = re.sub(r'…', " ", text)
         text = re.sub(r'  ', ' ', text)
+        text = re.sub(r'”“', '', text)
         return text
 
     def remove_tek(self, text, tek_string):
+        '''
+        Tek is the Gujarati word for the initial line of the poem. Whenever, one stanza of any poem is sung, the initial line of the poem is sung once again before starting the
+        next stanza. This is called as singing a "Tek". Written poems mention the tek string too many a times. This will cause a problem of redundancy. Hence, removing it is
+        necessary.
+        '''
         if str(type(tek_string))=="<class 'NoneType'>" or not tek_string:
             raise TypeError('tek_string needs to be a valid string')
         if str(type(text))=="<class 'list'>":
@@ -32,14 +38,7 @@ class Preprocessor():
         text = re.sub(' ।।[૧૨૩૪૫૬૭૮૯૦]।।', '.', text)
         if remove_tek:
             text = self.remove_tek(text, tek_string)
-        tokens = WordTokenizer(text, keep_punctuations=False)
-        # Remove poetic words
-        for i in range(len(tokens)):
-            try:
-                if tokens[i] in ['જી', 'રે', 'હો', 'હોજી', 'લોલ​', 'હે', 'હેજી', '...', 'સંતો']:
-                    del(tokens[i])
-            except:
-                pass
+        tokens = WordTokenizer(text, corpus='poetry', keep_punctuations=False)
 
         for i in range(len(tokens)):
             # Rule 1
@@ -50,7 +49,9 @@ class Preprocessor():
                 tokens[i] = tokens[i].strip('ૈ')+'ે'
             # Rule 3
             index = tokens[i].find('ર')
-            if tokens[i][index-1]=='િ' and index!=len(tokens[i])-1:
+            if index == -1:
+                pass
+            elif index<len(tokens[i])-1 and tokens[i][index-1]=='િ':
                 tokens[i] = re.sub('િર', 'ૃ', tokens[i])
 
         return ' '.join(tokens)

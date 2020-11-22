@@ -34,7 +34,7 @@ class Translator():
         return translation
 
     def hindi_to_gujarati(self, sentence):
-        """Translates the word given in Hindi and prints out the pronounciation in Gujarati"""
+        """Translates the sentence given in Hindi and prints out the pronounciation in Gujarati"""
         l = list(sentence)
         for i in range(len(l)):
             try:
