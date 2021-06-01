@@ -15,12 +15,15 @@ from utils.alphabet import numbers, punctuations
 
 class posTagger(CRFTagger):
 
-	def __init__(self, model='guj', verbose=False, corpus='poetry', tek_string=None):
+	def __init__(self, model='guj', verbose=True, corpus='poetry', tek_string=None):
 		super(posTagger, self).__init__(verbose=verbose)
-		self.set_model_file(model.strip('.crf.pkl')+'.crf.pkl')
+		self._model_file = model.strip('.crf.pkl')+'.crf.pkl'
 		self.tags = set()
 		self.corpus=corpus
 		self.tek_string = tek_string
+
+	def eval(self):
+		self.set_model_file(self._model_file)
 
 	def rename_model(self, old_name, new_name):
 		os.rename(old_name+'.pkl', new_name+'.pkl')
