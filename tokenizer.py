@@ -29,6 +29,7 @@ def WordTokenizer(data, corpus='poetry', keep_punctuations=True, keep_stopwords 
     for i in data:
         if i:
             return_list.append(i)
+            
 
     return return_list
 

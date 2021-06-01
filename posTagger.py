@@ -17,7 +17,7 @@ class posTagger(CRFTagger):
 
 	def __init__(self, model='guj', verbose=False, corpus='poetry', tek_string=None):
 		super(posTagger, self).__init__(verbose=verbose)
-		self._model_file = model.strip('.pkl')+'.crf.pkl'
+		self.set_model_file(model.strip('.crf.pkl')+'.crf.pkl')
 		self.tags = set()
 		self.corpus=corpus
 		self.tek_string = tek_string
@@ -215,8 +215,8 @@ class posTagger(CRFTagger):
 			sent = WordTokenizer(sent, keep_stopwords=False)
 
 
-		elif corpus=='prose':
-			self.sent = WordTokenizer(sent, keep_stopwords=True)
+		elif self.corpus=='prose':
+			sent = WordTokenizer(sent, keep_stopwords=True)
 
 
 		else:
