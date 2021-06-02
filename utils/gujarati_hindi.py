@@ -96,4 +96,4 @@ hi_gu = {
 'ख':'ખ​'
 }
 
-gu_hi = {k:v for k,v in hi_gu.items()}
+gu_hi = {v:k for k,v in hi_gu.items()}

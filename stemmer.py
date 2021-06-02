@@ -1,5 +1,5 @@
 from tokenizer import SentenceTokenizer
-from utils.stopwords import stopwords
+from utils.stopwords import *
 from preprocessing import Preprocessor
 
 import re
@@ -35,7 +35,7 @@ class Stemmer():
 			print("{} not present in prefixes".format(prefix))
 
 
-	def stem_word(self, sentence):
+	def stem_word(self, sentence, corpus):
 		word_list = sentence.strip('\u200b').split(' ')
 		if not word_list[-1]:
 			del(word_list[-1])
@@ -45,9 +45,14 @@ class Stemmer():
 			a = word
 			if word.endswith(puctuations):
 				a = word[:-1]
-			if a in stopwords:
-				return_list.append(a)
-				continue
+			if corpus == 'prose':
+				if a in prose_stopwords:
+					return_list.append(a)
+					continue
+			else:
+				if a in poetry_stopwords:
+					return_list.append(a)
+					continue
 			for suffix in suffixes:
 				if a.endswith(suffix):
 					a = a.rstrip(suffix)
@@ -63,15 +68,19 @@ class Stemmer():
 		return return_sentence
 
 
-	def stem(self, text, poetic_preprocessing=False, remove_tek=False, tek_string=None):
+	def stem(self, text, corpus='prose', remove_tek=False, tek_string=None):
 		preprocessor = Preprocessor()
 		text = preprocessor.compulsory_preprocessing(text)
-		if poetic_preprocessing:
+		if corpus == 'poetry':
 			text = preprocessor.poetic_preprocessing(text, remove_tek=remove_tek, tek_string=tek_string)
+		elif corpus == 'prose':
+			pass
+		else:
+			raise ValueError("Unnrecognized argument 'corpus'. Should be either 'prose' or 'poetry'")
 		l = SentenceTokenizer(text)
 		if len(l)==1:
 			sentence = l[0]
-			return self.stem_word(sentence)
+			return self.stem_word(sentence, corpus=corpus)
 		else:
 			a = []
 			for sentence in l:

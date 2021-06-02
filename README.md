@@ -1,8 +1,6 @@
 
 # Gujarati-NLP-Toolkit
 
-# __Note:__
-__This module is being worked on a major update. The main model is transferred from Sklearn to NLTK CRF Tagger. The present documentation is outdated in this context. Please do not use this model based on the given documentation. The module is in a working state but the documentation is outdated. You may use the module without a documentation guideline, but if you require a documentation, please stay tuned__
 
 ## Added Features:
 
@@ -11,7 +9,8 @@ __This module is being worked on a major update. The main model is transferred f
 #### a) Implementation:
 ```python
 import posTagger as pt
-tagger = pt.posTagger()
+tagger = pt.posTagger(corpus='prose')	# corpus='poetry' if you are tagging a sentence of a poem
+tagger.eval()	# Set the tagger in evaluation/inference mode
 sentence = 'તારુ નામ શુ છે?'  # What is your name?
 print(tagger.pos_tag(sentence))   # [('તારુ', 'PR_PRP'), ('નામ', 'N_NN'), ('શુ', 'N_NN'), ('છે', 'V_VAUX'), ('?', 'RD_PUNC')]
 ```
@@ -20,7 +19,7 @@ print(tagger.pos_tag(sentence))   # [('તારુ', 'PR_PRP'), ('નામ', '
 ```python
 import posTagger as pt
 tagger = pt.posTagger('model_name')   # Give any name for your model
-train_X, train_y = tagger.data_from_corpus('path/to/corpus/')
+train_data = tagger.structure_data('path/to/corpus/file')
 ```
 
 Your corpus must be in txt(comma delimited) or csv format and must contain a column 'Value' having the data in the form:
@@ -44,39 +43,17 @@ train_y:  [[tags of sentence 1], [tags of sentence 2], ........, [tags of senten
 Enter the Following block of code after this:
 
 ```python
-tagger.train(train_X, train_y, save=True)    # save = False if you don't want to save the model
+tagger.train(train_data, tagger._model_file)
 ```
 
 #### c)  Loading your trained posTag Model:
 ```python
 import posTagger as pt
 tagger = pt.posTagger('model_name')
-model = tagger.load()
+model = tagger.eval()
 ## Carry out your processes
 ```
 
-#### d) Optimizing the Hyperparameters (Choosing the best model automatically):
-```python
-import posTagger as pt
-tagger = pt.posTagger()
-tagger.train(train_X, train_y, optimize_hyperparameters=True)
-#By default, the feature is set to false
-```
-
-
-#### e) Evaluation Processes:
-The metrics available for the evaluation are:
-* Flat F1 score
-* Flat classification report
-
-&nbsp;
-Evaluation process can be carried out as follows:
-```python
-import posTagger as pt
-tagger = pt.posTagger()
-tagger.evaluate(test_X, test_y, metric='flat_f1_score')
-# Or metric='flat_classification_report'
-```
 
 &nbsp;
 &nbsp;
@@ -101,25 +78,25 @@ print(tokens)  # ['તારુ નામ શુ છે?', 'તુ શુ કર
 ```
 &nbsp;
 &nbsp;
-### 3) Translator:
+### 3) Transliterator:
 This feature is helpful for people not acquainted with Gujarati. This function takes input of a Gujarati Word or Letter and gives out the Pronounciation of the respective input in English.
 
-#### a) Letter Translation:
+#### a) Letter Transliteration:
 ```python
-import translator
-translator = translator()
-translation = translator.letter_translate('ત')  # Letter 'ta'
-print(translation)   # ta
+from transliterator import Transliterator
+transliterator = transliterator()
+transliteration = transliterator.letter_transliterate_gujarati_to_english('ત')  # Letter 'ta'
+print(transliteration)   # ta
 ```
 
 #### b) Word/Sentence Translation:
 ```python
-import translator
-translator = translator()
-translation = translator.translate('તારુ')  # Meaning 'your' or 'yours'
-print(translation)   # taaru
-translation = translator.translate('મારુ નામ રુત્વિક છે')	# meaning 'My name is Rutvik'
-print(translation)   # maaru naam rutvik chhe
+from transliterator import Transliterator
+transliterator = transliterator()
+transliteration = transliterator.transliterate('તારુ')  # Meaning 'your' or 'yours'
+print(transliteration)   # taaru
+transliteration = transliterator.transliterate('મારુ નામ રુત્વિક છે')	# meaning 'My name is Rutvik'
+print(transliteration)   # maaru naam rutvik chhe
 ```
 &nbsp;
 &nbsp;
@@ -153,5 +130,6 @@ stemmer.delete_prefix('prefix_to_delete') # Similar to delete_suffix() but for p
 &nbsp;
 
 # TODO:
--- Create a morphological tokenizer
--- Create a Sentiment Analyser
+- Improve the POS Tagger performance
+- Create a morphological tokenizer
+- Create a Sentiment Analyser

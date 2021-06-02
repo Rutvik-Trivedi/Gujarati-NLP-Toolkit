@@ -13,7 +13,10 @@ class Preprocessor():
         text = re.sub(r'…', " ", text)
         text = re.sub(r'  ', ' ', text)
         text = re.sub(r'”“', '', text)
-        return text
+        text = WordTokenizer(text)
+        for i in range(len(text)):
+            text[i] = text[i].rstrip(':')
+        return ' '.join(text)
 
     def remove_tek(self, text, tek_string):
         '''
@@ -25,9 +28,9 @@ class Preprocessor():
             raise TypeError('tek_string needs to be a valid string')
         if str(type(text))=="<class 'list'>":
             for i in range(len(text)):
-                text[i] = text[i].strip(tek_string)
+                text[i] = text[i].rstrip(tek_string)
         elif str(type(text))=="<class 'str'>":
-            text = text.strip(tek_string)
+            text = text.rstrip(tek_string)
         else:
             raise TypeError("Argument 'text' must be either a str or list")
         return text

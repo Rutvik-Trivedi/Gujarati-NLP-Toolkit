@@ -3,17 +3,17 @@ from utils.gujarati_hindi import gu_hi, hi_gu
 import re
 
 
-class Translator():
+class Transliterator():
 
     def __init__(self, verbose=False):
         self.verbose=verbose
 
-    def letter_translate_gujarati_to_english(self, letter):
-        """Translates the letter given in Gujarati and prints out the english pronounciation"""
+    def letter_transliterate_gujarati_to_english(self, letter):
+        """Transliterates the letter given in Gujarati and prints out the english pronounciation"""
         return list(letters.keys())[list(letters.values()).index(letter)]
 
     def gujarati_to_english(self, word):
-        """Translates the word given in Gujarati and prints out the pronounciation in English"""
+        """Transliterates the word given in Gujarati and prints out the pronounciation in English"""
         word = re.sub(r'્', r'', word)
         word = re.sub(r'\u200b',r'',word)
         return_list = []
@@ -34,7 +34,7 @@ class Translator():
         return translation
 
     def hindi_to_gujarati(self, sentence):
-        """Translates the sentence given in Hindi and prints out the pronounciation in Gujarati"""
+        """Transliterates the sentence given in Hindi and prints out the pronounciation in Gujarati"""
         l = list(sentence)
         for i in range(len(l)):
             try:
@@ -49,7 +49,7 @@ class Translator():
         return l
 
     def gujarati_to_hindi(self, sentence):
-        """Translates the word given in Gujarati and prints out the pronounciation in Hindi"""
+        """Transliterates the word given in Gujarati and prints out the pronounciation in Hindi"""
         l = list(sentence)
         for i in range(len(l)):
             try:
