@@ -50,7 +50,7 @@ tagger.train(train_data, tagger._model_file)
 ```python
 import posTagger as pt
 tagger = pt.posTagger('model_name')
-model = tagger.eval()
+tagger.eval()
 ## Carry out your processes
 ```
 
