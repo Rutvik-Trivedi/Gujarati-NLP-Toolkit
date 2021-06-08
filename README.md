@@ -22,7 +22,7 @@ tagger = pt.posTagger('model_name')   # Give any name for your model
 train_data = tagger.structure_data('path/to/corpus/file')
 ```
 
-Your corpus must be in txt(comma delimited) or csv format and must contain a column 'Value' having the data in the form:
+Your corpus must be in txt(tab delimited) or tsv format (as having csv might conflict because Gujarati has the comma \[ , \] as a punctuation) and must contain a column 'Value' having the data in the form:
 ```
 Row1:    'word1\tag1 word2\tag2 word3\tag3 ....... wordn\tagn'
 Row2:    'word1\tag1 word2\tag2 word3\tag3 ....... wordn\tagn'

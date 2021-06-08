@@ -172,13 +172,14 @@ class posTagger(CRFTagger):
 
 
 
-	def collect_train_data(self, file):
-		data = pd.read_csv(file)
+	def collect_train_data(self, file, sep='\t'):
+		data = pd.read_csv(file, sep=sep)
+		print(data.columns)
+		data = data['Value']
 		data = data.replace(np.nan, "", regex=True)
-		data1 = data['Value']
-		data1 = data1.replace(u'\ufeff', '', regex=True)
-		data1 = data1.tolist()
-		return data1
+		data = data.replace(u'\ufeff', '', regex=True)
+		data = data.tolist()
+		return data
 
 	def split_correctly(self, word):
 		try:
@@ -193,8 +194,8 @@ class posTagger(CRFTagger):
 		else:
 			return tuple(splitted)
 
-	def structure_data(self, file):
-		data = self.collect_train_data(file)
+	def structure_data(self, file, sep='\t'):
+		data = self.collect_train_data(file, sep=sep)
 
 		train_data = []
 		for i in range(len(data)):
